@@ -1,0 +1,16 @@
+service: express-crawler-search
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+
+functions:
+  app:
+    handler: index.handler
+    timeout: 30
+    memory: 512
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
